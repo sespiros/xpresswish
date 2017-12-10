@@ -1,17 +1,15 @@
 function checkValid() {
     var valid = true;
 
-    $("input").each(function(){
+    $("#msg").each(function(){
         if ($.trim($(this).val()).length == 0){
-            $(this).addClass("highlight");
+            $(this).removeClass("default").addClass("highlight");
             valid = false;
         }
         else{
-            $(this).removeClass("highlight");
+            $(this).removeClass("highlight").addClass("default");
         }
     });
-
-    if (!valid) alert("Please fill in all the required fields (indicated by *)");
 
     return valid;
 }
@@ -19,9 +17,17 @@ function checkValid() {
 function createLink() {
     var msgText = $("#msg").val();
 
-    url = "<p>" + window.location.href + "#!/card/" + btoa(msgText) + "</p>"
+    url = window.location.href + "#!/card/" + btoa(msgText)
 
-    $( "body" ).append(url)
+    field = "<div class=\"buttons\"><input type=\"text\" id=\"link\" name=\"link\" class=\"default\"><a href=\"#\" id=\"btn2\" class=\"button2\"><i class=\"fa fa-clipboard\" aria-hidden=\"true\"></i></a></div>"
+
+    $( "#view" ).append(field)
+    document.getElementById( "link" ).value = url
+    document.getElementById( "link" ).focus();
+    document.getElementById( "link" ).select();
+    $( "#btn2" ).on("click", function() {
+        document.execCommand('copy');
+    });
 }
 
 function paint(canvas, msg) {
@@ -64,13 +70,13 @@ router.on(
 // set the default route
 router.on(() => { 
     $( "#view" ).load("main.html", function() {
-        $("#msg").keyup(function(event) {
+        $( "#msg" ).keyup(function(event) {
             if (event.keyCode === 13) {
-                $("#btn").click();
+                $( "#btn" ).click();
             }
         });
 
-        $( "button" ).click(function() {
+        $( "#btn1" ).one("click", function() {
             if (checkValid()) {
                 createLink();
             }
@@ -79,6 +85,6 @@ router.on(() => {
 });
 
 // set the 404 route
-router.notFound((query) => { $id('view').innerHTML = '<h3>Couldn\'t find the page you\'re looking for...</h3>'; });
+// router.notFound((query) => { $id('view').innerHTML = '<h3>Couldn\'t find the page you\'re looking for...</h3>'; });
 
 router.resolve();
