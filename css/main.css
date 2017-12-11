@@ -100,7 +100,6 @@ textarea {
    ========================================================================== */
 #logo {
     margin: auto;
-    width: 50%;
     padding: 10px;
 }
 
@@ -119,7 +118,6 @@ textarea {
 #view {
     text-align: center;
     margin: auto;
-    width: 60%;
     padding: 10px;
 }
 
@@ -149,7 +147,7 @@ textarea {
 }
 
 input[type=text] {
-    padding: 16px 20px;
+    padding: 16px 10px;
     display: inline-block;
     box-sizing: border-box;
 }
@@ -206,7 +204,7 @@ a:active {
 	-moz-animation: snow 10s linear infinite;
 	-ms-animation: snow 10s linear infinite;
     animation: snow 10s linear infinite;
-    z-index: -100;
+    z-index: -2;
 }
 @keyframes snow {
   0% {background-position: 0px 0px, 0px 0px, 0px 0px;}

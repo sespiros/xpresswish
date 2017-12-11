@@ -17,11 +17,12 @@ function checkValid() {
 function createLink() {
     var msgText = $("#msg").val();
 
-    url = window.location.href + "#!/card/" + btoa(msgText)
+    url = window.location.href.split("#")[0] + "#!/1/" + btoa(msgText)
 
-    field = "<div class=\"buttons\"><input type=\"text\" id=\"link\" name=\"link\" class=\"default\"><a href=\"#\" id=\"btn2\" class=\"button2\"><i class=\"fa fa-clipboard\" aria-hidden=\"true\"></i></a></div>"
-
-    $( "#view" ).append(field)
+    if (document.getElementById("link") === null){
+        field = "<div class=\"buttons\"><input type=\"text\" id=\"link\" name=\"link\" class=\"default\"><a href=\"#\" id=\"btn2\" class=\"button2\"><i class=\"fa fa-clipboard\" aria-hidden=\"true\"></i></a></div>"
+        $( "#view" ).append(field)
+    }
     document.getElementById( "link" ).value = url
     document.getElementById( "link" ).focus();
     document.getElementById( "link" ).select();
@@ -29,12 +30,6 @@ function createLink() {
         document.execCommand('copy');
     });
 }
-
-function paint(canvas, msg) {
-    var ctx = canvas.getContext("2d");
-    ctx.font = "30px Arial";
-    ctx.fillText(msg,10,50);
-} 
 
 // getElementById wrapper
 function $id(id) {
@@ -53,14 +48,17 @@ function loadHTML(url, id) {
         }
     }
 }
+
+var animations = {};
+animations["1"] = "templates/fireworks/fireworks.html"
   
 // use #! to hash
 router = new Navigo(null, true, '#!');
 router.on(
 // 'view' is the id of the div element inside which we render the HTML
-'/card/:id', (params) => {
-    $( "#view" ).load("canvas.html", function() {
-        var canvas = document.getElementById("myCanvas");
+'/:id/:enc', (params) => {
+    $( "#view" ).load(animations[params.id], function() {
+        var canvas = document.getElementById("animCanvas");
         var msgb64 = window.location.hash.split('/')[2];
         var msgTxt = atob(msgb64);
         paint(canvas, msgTxt);
@@ -76,7 +74,7 @@ router.on(() => {
             }
         });
 
-        $( "#btn1" ).one("click", function() {
+        $( "#btn1" ).on("click", function() {
             if (checkValid()) {
                 createLink();
             }
