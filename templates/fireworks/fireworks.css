@@ -4,66 +4,11 @@
     z-index: -3
 }
 
-#text {
+#wrapper {
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 6em;
-  top: 1em;
-  position: absolute;
-  margin: auto;
+  margin-top: 1em;
   width: 100%;
-  -webkit-animation: squiggly-anim 0.34s linear infinite;
-          animation: squiggly-anim 0.34s linear infinite;
-}
-.small {
-  font-size: 0.5em;
-}
-.smaller {
-  font-size: 0.4em;
-}
-p {
-  margin: 0;
-}
-@-webkit-keyframes squiggly-anim {
-  0% {
-    -webkit-filter: url("#squiggly-0");
-            filter: url("#squiggly-0");
-  }
-  25% {
-    -webkit-filter: url("#squiggly-1");
-            filter: url("#squiggly-1");
-  }
-  50% {
-    -webkit-filter: url("#squiggly-2");
-            filter: url("#squiggly-2");
-  }
-  75% {
-    -webkit-filter: url("#squiggly-3");
-            filter: url("#squiggly-3");
-  }
-  100% {
-    -webkit-filter: url("#squiggly-4");
-            filter: url("#squiggly-4");
-  }
-}
-@keyframes squiggly-anim {
-  0% {
-    -webkit-filter: url("#squiggly-0");
-            filter: url("#squiggly-0");
-  }
-  25% {
-    -webkit-filter: url("#squiggly-1");
-            filter: url("#squiggly-1");
-  }
-  50% {
-    -webkit-filter: url("#squiggly-2");
-            filter: url("#squiggly-2");
-  }
-  75% {
-    -webkit-filter: url("#squiggly-3");
-            filter: url("#squiggly-3");
-  }
-  100% {
-    -webkit-filter: url("#squiggly-4");
-            filter: url("#squiggly-4");
-  }
+  position: absolute;
+  left: 0;
 }

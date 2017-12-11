@@ -1,40 +1,17 @@
 <link rel="stylesheet" type="text/css" href="/templates/fireworks/fireworks.css" />
-<div id="text">
+<link rel="stylesheet" type="text/css" href="http://csshake.surge.sh/csshake.min.css">
+
+<div id="wrapper">
+    <div id="text" class="shake-opacity shake-constant"></div>
 </div>
 
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-<defs>
-    <filter id="squiggly-0">
-    <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="0"/>
-    <feDisplacementMap id="displacement" in="SourceGraphic" in2="noise" scale="6" />
-    </filter>
-    <filter id="squiggly-1">
-    <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="1"/>
-<feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
-    </filter>
-
-    <filter id="squiggly-2">
-    <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="2"/>
-<feDisplacementMap in="SourceGraphic" in2="noise" scale="6" />
-    </filter>
-    <filter id="squiggly-3">
-    <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="3"/>
-<feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
-    </filter>
-
-    <filter id="squiggly-4">
-    <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="4"/>
-<feDisplacementMap in="SourceGraphic" in2="noise" scale="6" />
-    </filter>
-</defs>
-</svg>
 <canvas id="animCanvas">
     Your browser does not support the canvas element.
 </canvas>
 
 <script>
 function paint(canvas, msg) {
-    bgcolor = "#05234d";
+    bgcolor = "#283593";
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     var ctx = canvas.getContext('2d');
