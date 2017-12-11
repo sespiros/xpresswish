@@ -1,6 +1,3 @@
-$(document).ready(function() {
-    $("body").removeClass('hidden');
-});
 function checkValid() {
     var valid = true;
 
