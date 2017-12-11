@@ -17,13 +17,13 @@ function checkValid() {
 function createLink() {
     var msgText = $("#msg").val();
 
-    url = window.location.href.split("#")[0] + "#!/1/" + btoa(msgText)
+    url = window.location.href.split("#")[0] + "#!/1/" + btoa(encodeURIComponent(msgText));
 
     if (document.getElementById("link") === null){
         field = "<div class=\"buttons\"><input type=\"text\" id=\"link\" name=\"link\" class=\"default\"><a href=\"#\" id=\"btn2\" class=\"button\"><i class=\"fa fa-clipboard\" aria-hidden=\"true\"></i></a></div>"
         $( "#view" ).append(field)
     }
-    document.getElementById( "link" ).value = url
+    document.getElementById( "link" ).value = url;
     document.getElementById( "link" ).focus();
     document.getElementById( "link" ).select();
     $( "#btn2" ).on("click", function() {
@@ -60,7 +60,7 @@ router.on(
     $( "#view" ).load(animations[params.id], function() {
         var canvas = document.getElementById("animCanvas");
         var msgb64 = window.location.hash.split('/')[2];
-        var msgTxt = atob(msgb64);
+        var msgTxt = decodeURIComponent(atob(msgb64));
         paint(canvas, msgTxt);
         $( "#mini-logo" ).removeClass('hidden');
     });

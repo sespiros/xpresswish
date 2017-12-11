@@ -1,25 +1,56 @@
 <link rel="stylesheet" type="text/css" href="/templates/fireworks/fireworks.css" />
+<div id="text">
+</div>
 
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+<defs>
+    <filter id="squiggly-0">
+    <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="0"/>
+    <feDisplacementMap id="displacement" in="SourceGraphic" in2="noise" scale="6" />
+    </filter>
+    <filter id="squiggly-1">
+    <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="1"/>
+<feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
+    </filter>
+
+    <filter id="squiggly-2">
+    <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="2"/>
+<feDisplacementMap in="SourceGraphic" in2="noise" scale="6" />
+    </filter>
+    <filter id="squiggly-3">
+    <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="3"/>
+<feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
+    </filter>
+
+    <filter id="squiggly-4">
+    <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="4"/>
+<feDisplacementMap in="SourceGraphic" in2="noise" scale="6" />
+    </filter>
+</defs>
+</svg>
 <canvas id="animCanvas">
     Your browser does not support the canvas element.
 </canvas>
 
 <script>
 function paint(canvas, msg) {
+    bgcolor = "#05234d";
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     var ctx = canvas.getContext('2d');
+
+    document.getElementById('text').innerHTML = msg;
     
     // resize
     $(window).on('resize', function() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        ctx.fillStyle = '#283593';
+        ctx.fillStyle = bgcolor;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
     });
 
     // init
-    ctx.fillStyle = '#283593';
+    ctx.fillStyle = bgcolor;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     // objects
     var listFire = [];
@@ -123,9 +154,8 @@ function paint(canvas, msg) {
         // clear
         ctx.globalCompositeOperation = 'source-over';
         ctx.globalAlpha = 0.18;
-        ctx.fillStyle = '#283593';
+        ctx.fillStyle = bgcolor;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        drawText()
 
         // re-draw
         ctx.globalCompositeOperation = 'screen';
@@ -148,36 +178,6 @@ function paint(canvas, msg) {
             ctx.fillStyle = firework.fill;
             ctx.fill();
         }
-    }
-
-    function drawText() {
-        ctx.font = "100px Amatic SC"
-        ctx.fillStyle = "white";
-        var maxWidth = canvas.width - 100;
-        var lineHeight = 100;
-        var x = (canvas.width - maxWidth) / 2;
-        var y = 100;
-        wrapText(ctx, msg, x, y, maxWidth, lineHeight)
-    }
-
-    function wrapText(context, text, x, y, maxWidth, lineHeight) {
-        var words = text.split(' ');
-        var line = '';
-
-        for(var n = 0; n < words.length; n++) {
-          var testLine = line + words[n] + ' ';
-          var metrics = context.measureText(testLine);
-          var testWidth = metrics.width;
-          if (testWidth > maxWidth && n > 0) {
-            context.fillText(line, (canvas.width - context.measureText(line).width)/2, y);
-            line = words[n] + ' ';
-            y += lineHeight;
-          }
-          else {
-            line = testLine;
-          }
-        }
-        context.fillText(line, (canvas.width - context.measureText(line).width)/2, y);
     }
 }
 </script>
