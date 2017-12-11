@@ -1,3 +1,6 @@
+$(document).ready(function() {
+    $("body").removeClass('hidden');
+});
 function checkValid() {
     var valid = true;
 
@@ -100,7 +103,7 @@ window.onload = function(){
     canvas.height = H;
 
 	//snowflake particles
-	var mp = 100; //max particles
+	var mp = 50; //max particles
 	var particles = [];
 	for(var i = 0; i < mp; i++)
 	{
