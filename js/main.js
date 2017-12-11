@@ -20,7 +20,7 @@ function createLink() {
     url = window.location.href.split("#")[0] + "#!/1/" + btoa(msgText)
 
     if (document.getElementById("link") === null){
-        field = "<div class=\"buttons\"><input type=\"text\" id=\"link\" name=\"link\" class=\"default\"><a href=\"#\" id=\"btn2\" class=\"button2\"><i class=\"fa fa-clipboard\" aria-hidden=\"true\"></i></a></div>"
+        field = "<div class=\"buttons\"><input type=\"text\" id=\"link\" name=\"link\" class=\"default\"><a href=\"#\" id=\"btn2\" class=\"button\"><i class=\"fa fa-clipboard\" aria-hidden=\"true\"></i></a></div>"
         $( "#view" ).append(field)
     }
     document.getElementById( "link" ).value = url
@@ -62,6 +62,7 @@ router.on(
         var msgb64 = window.location.hash.split('/')[2];
         var msgTxt = atob(msgb64);
         paint(canvas, msgTxt);
+        $( "#mini-logo" ).removeClass('hidden');
     });
 });
 

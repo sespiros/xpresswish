@@ -6,14 +6,14 @@
 
 <script>
 function paint(canvas, msg) {
-    canvas.width = $(window).width();
-    canvas.height = $(window).height();
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     var ctx = canvas.getContext('2d');
     
     // resize
     $(window).on('resize', function() {
-        canvas.width = $(window).width();
-        canvas.height = $(window).height();
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
         ctx.fillStyle = '#283593';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
     });
@@ -150,6 +150,16 @@ function paint(canvas, msg) {
         }
     }
 
+    function drawText() {
+        ctx.font = "100px Amatic SC"
+        ctx.fillStyle = "white";
+        var maxWidth = canvas.width - 100;
+        var lineHeight = 100;
+        var x = (canvas.width - maxWidth) / 2;
+        var y = 100;
+        wrapText(ctx, msg, x, y, maxWidth, lineHeight)
+    }
+
     function wrapText(context, text, x, y, maxWidth, lineHeight) {
         var words = text.split(' ');
         var line = '';
@@ -168,16 +178,6 @@ function paint(canvas, msg) {
           }
         }
         context.fillText(line, (canvas.width - context.measureText(line).width)/2, y);
-      }
-
-    function drawText() {
-        ctx.font = "100px Amatic SC"
-        ctx.fillStyle = "white";
-        var maxWidth = canvas.width - 100;
-        var lineHeight = 100;
-        var x = (canvas.width - maxWidth) / 2;
-        var y = 90;
-        wrapText(ctx, msg, x, y, maxWidth, lineHeight)
     }
 }
 </script>
