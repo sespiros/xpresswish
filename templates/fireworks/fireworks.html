@@ -7,17 +7,29 @@
     }
 
     #wrapper {
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 6em;
-    margin-top: 1em;
-    width: 100%;
-    position: absolute;
-    left: 0;
+        font-family: 'Open Sans Condensed', sans-serif;
+        font-size: 6em;
+        margin-top: 1em;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        word-break: break-word;
+    }
+
+    #text {
+        margin: 1em;
+    }
+
+    .constant {
+        animation-name: shake-opacity;
+        animation-duration: 3s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
     }
 </style>
 
 <div id="wrapper">
-    <div id="text" class="shake-opacity shake-constant"></div>
+    <div id="text" class="shake-opacity constant"></div>
 </div>
 
 <canvas id="animCanvas">
